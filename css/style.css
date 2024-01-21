@@ -13,7 +13,7 @@ body {
     margin: 50px auto;
     width: max-content;
     display: grid;
-    grid-template-columns: repeat(4, 150px);
+    grid-template-columns: repeat(6, 150px);
     gap: 20px;
 }
 
