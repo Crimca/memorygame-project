@@ -1,5 +1,5 @@
 body {
-    background: #5D3954; 
+    background: linear-gradient(to right, #e81416, #ffa500, #faeb36, #79c314, #487de7, #4b369d, #70369d); 
     margin: 0;
 }
 
@@ -19,7 +19,7 @@ body {
 
 .card {
 height: 150px;
-background: #382232;
-border: 5px solid #fff;
+background-color: #382232;
+border: 5px solid white;
 cursor: pointer;
 }

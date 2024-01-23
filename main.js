@@ -23,31 +23,56 @@ function buildCard(colour) {
     
     element.classList.add("card");
     element.setAttribute("data-colour", colour);
-    element.setAttribute("data-revealed", "false");
+   // element.setAttribute("data-clicked", "false");
 
     element.addEventListener("click", () => {
         if (waitingMoveEnd) {
-            return;
-        }
+        return;
+    }
+   
 // pelaajan valitsema kortti muuttuu värilliseksi
-        element.style.background = colour;
+        element.style.backgroundColor = colour;
 
 // valitaan vain kaksi korttia, muut pysyvät kääntämättömänä
         if (!activeCard) {
             activeCard = element;
             return;
         }
+
+        console.log(activeCard);
+        
+//katsotaan, onko värit samat ja jos on, niin jätetään käännetyt kortit mukaan laskuun
+        const colourMatch = activeCard.getAttribute("data-colour");
+
+        if (colourMatch === colour) {
+            element.setAttribute("data-clicked", "true");
+            activeCard.setAttribute("data-clicked", "true");
+            waitingMoveEnd = false;
+            activeCard = null;
+            revealedQuantity += 2;
+//voitto ilmoitus, jos käännettyjen korttien määrä on kaikkien korttien määrä
+        if (revealedQuantity === cardQuantity) {
+            alert("Sinä voitit!");
+        }
+
+        return;
+    }
+
         waitingMoveEnd = true;
+
+    //minuutin timer, joka myös kääntää kortit takaisin
         setTimeout(() => {
-            element.style.background = null;
-            activeCard.style.background = null;
+            element.style.backgroundColor = null;
+            activeCard.style.backgroundColor = null;
+            waitingMoveEnd = false;
+            activeCard = null;
         }, 1000);
     });
     
     return element;
     }
 
-// korttien rakennus CSS:n sijaan javascriptillä
+// korttien rakennus HTML:n ja CSS:n sijaan javascriptillä
 for (let i = 0; i < cardQuantity; i++) {
     const randomInd = Math.floor(Math.random() * coloursPairs.length);
     const colour = coloursPairs[randomInd];
