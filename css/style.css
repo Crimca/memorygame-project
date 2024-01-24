@@ -1,9 +1,9 @@
 body {
-    background: linear-gradient(to right, #e81416, #ffa500, #faeb36, #79c314, #487de7, #4b369d, #70369d); 
+    background: linear-gradient(to left, #000000, #787778); 
     margin: 0;
 }
 
-.title2 {
+h2 {
     background: white;
     text-align: center;
     font-size: 30px;
@@ -23,3 +23,18 @@ background-color: #382232;
 border: 5px solid white;
 cursor: pointer;
 }
+
+.container {
+    height: 600px;
+    position: relative;
+    border: 3px solid pink;
+}
+
+.center {
+    margin: 0;
+    position: absolute;
+    bottom: 5%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+  }
