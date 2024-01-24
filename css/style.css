@@ -3,10 +3,13 @@ body {
     margin: 0;
 }
 
-h2 {
+.h2 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     background: white;
-    text-align: center;
     font-size: 30px;
+    text-transform: uppercase;
 }
 
 .cards {
@@ -31,10 +34,8 @@ cursor: pointer;
 }
 
 .center {
-    margin: 0;
-    position: absolute;
-    bottom: 5%;
-    left: 50%;
-    -ms-transform: translate(-50%, -50%);
-    transform: translate(-50%, -50%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 10px;
   }
