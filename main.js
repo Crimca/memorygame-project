@@ -1,38 +1,30 @@
+// taulukot
 const cardContainer = document.querySelector(".cards");
-const colours = [];
-for (let i = 0; i < 12; i++) {
-    const randomColour = "#" + Math.floor(Math.random() * 16777215).toString(16);
-    colours.push(randomColour);
-}
-console.log(colours);
-
+const colours = ['indigo',  'chartreuse',  'coral',  'turquoise',  'maroon',  'orchid',  'black',  'salmon',  'slategray',  'crimson',  'azure',  'olive'];
+// const emojis = ["💖", "🤷‍♀️", "🤞", "🎶", "🎉", "✨", "🎀", "🎨", "👓", "🏀", "🔨", "⌚"];
 const coloursPairs = [...colours, ...colours];
-console.log(coloursPairs);
-
 const cardQuantity = coloursPairs.length;
-
 
 // peli muuttujat
 let revealedQuantity = 0;
 let activeCard = null;
 let waitingMoveEnd = false;
 
-
 function buildCard(colour) {
     const element = document.createElement("div");
-    
     element.classList.add("card");
-    element.setAttribute("data-colour", colour);
-   // element.setAttribute("data-clicked", "false");
+    element.setAttribute("data-item", colour);
+    element.setAttribute("item-clicked", "false");
 
+//kuuntelee, kun pelaaja klikkaa korttia. if-lauseessa käsitellään vuoron loppu eli kun kaksi korttia on käännetty ja tarkastettu
     element.addEventListener("click", () => {
-        if (waitingMoveEnd) {
+        const clicked = element.getAttribute("item-clicked");
+
+        if (waitingMoveEnd || clicked === "true" || element === activeCard) {
         return;
     }
-   
 // pelaajan valitsema kortti muuttuu värilliseksi
         element.style.backgroundColor = colour;
-
 // valitaan vain kaksi korttia, muut pysyvät kääntämättömänä
         if (!activeCard) {
             activeCard = element;
@@ -42,14 +34,15 @@ function buildCard(colour) {
         console.log(activeCard);
         
 //katsotaan, onko värit samat ja jos on, niin jätetään käännetyt kortit mukaan laskuun
-        const colourMatch = activeCard.getAttribute("data-colour");
+        const colourMatch = activeCard.getAttribute("data-item");
 
         if (colourMatch === colour) {
-            element.setAttribute("data-clicked", "true");
-            activeCard.setAttribute("data-clicked", "true");
+            element.setAttribute("item-clicked", "true");
+            activeCard.setAttribute("item-clicked", "true");
             waitingMoveEnd = false;
             activeCard = null;
             revealedQuantity += 2;
+
 //voitto ilmoitus, jos käännettyjen korttien määrä on kaikkien korttien määrä
         if (revealedQuantity === cardQuantity) {
             alert("Sinä voitit!");
@@ -57,16 +50,15 @@ function buildCard(colour) {
 
         return;
     }
-
         waitingMoveEnd = true;
 
-    //minuutin timer, joka myös kääntää kortit takaisin
+    //puolen minuutin timer, joka myös kääntää kortit takaisin
         setTimeout(() => {
             element.style.backgroundColor = null;
             activeCard.style.backgroundColor = null;
             waitingMoveEnd = false;
             activeCard = null;
-        }, 1000);
+        }, 500);
     });
     
     return element;
