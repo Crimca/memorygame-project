@@ -1,7 +1,6 @@
 // taulukot
 const cardContainer = document.querySelector(".cards");
-const colours = ['indigo',  'chartreuse',  'coral',  'turquoise',  'maroon',  'orchid',  'black',  'salmon',  'slategray',  'crimson',  'azure',  'olive'];
-// const emojis = ["💖", "🤷‍♀️", "🤞", "🎶", "🎉", "✨", "🎀", "🎨", "👓", "🏀", "🔨", "⌚"];
+const colours = ['indigo',  'chartreuse',  'coral',  'turquoise',  'blue',  'orchid',  'black',  'yellow',  'slategray',  'crimson',  'azure',  'olive'];
 const coloursPairs = [...colours, ...colours];
 const cardQuantity = coloursPairs.length;
 
@@ -9,6 +8,26 @@ const cardQuantity = coloursPairs.length;
 let revealedQuantity = 0;
 let activeCard = null;
 let waitingMoveEnd = false;
+
+// ajastin
+let startTime;
+let timerInterval;
+const timerElement = document.querySelector(".timer");
+
+function startTimer() {
+    startTime = new Date();
+    timerInterval = setInterval(updateTimer, 1000);
+}
+
+function updateTimer() {
+    const currentTime = new Date();
+    const elapsedTime = Math.floor((currentTime - startTime) / 1000);
+    timerElement.textContent = `Ajastin: ${elapsedTime} sekunttia`;
+}
+
+function stopTimer() {
+    clearInterval(timerInterval);
+}
 
 function buildCard(colour) {
     const element = document.createElement("div");
@@ -46,6 +65,7 @@ function buildCard(colour) {
 //voitto ilmoitus, jos käännettyjen korttien määrä on kaikkien korttien määrä
         if (revealedQuantity === cardQuantity) {
             alert("Sinä voitit!");
+            stopTimer();
         }
 
         return;
@@ -75,3 +95,5 @@ cardContainer.appendChild(card);
 
     console.log(colour);
 }
+
+startTimer();

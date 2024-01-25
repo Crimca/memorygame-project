@@ -1,14 +1,21 @@
 body {
-    background: linear-gradient(to left, #000000, #787778); 
+    background: linear-gradient(to RIGHT, #382232, #787778); 
     margin: 0;
+    padding: 0;
 }
 
 .h2 {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: white;
-    font-size: 30px;
+    font-size: 17px;
+    color: #fff;
+    background-color: #333;
+    padding: 10px;
+    border-radius: 5px;
+    text-align: center;
+    width: 150px;
+    margin: 10px auto;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.3);
+    font-family: 'Arial', sans-serif;
+    letter-spacing: 1px;
     text-transform: uppercase;
 }
 
@@ -22,24 +29,60 @@ body {
 
 .card {
 height: 150px;
-background-color: #382232;
-border: 5px solid white;
+background-color: #333;
+border: 3px solid white;
 cursor: pointer;
 }
 
 .container {
-    height: 600px;
-    position: relative;
-    border: 3px solid pink;
+    font-size: 17px;
+    color: #fff;
+    background-color: #382232;
+    padding: 10px;
+    border-radius: 5px;
+    text-align: center;
+    width: 1050px;
+    margin: 10px auto;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.3);
+    font-family: 'Arial', sans-serif;
+    letter-spacing: 1px;
 }
 
 .center {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 10px;
   }
 
-  button {
-    font-size: 20px;
+button {
+    font-size: 17px;
+    color: #fff;
+    background-color: #333;
+    padding: 10px;
+    border-radius: 5px;
+    text-align: center;
+    width: 150px;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.3);
+    font-family: 'Arial', sans-serif;
+    letter-spacing: 1px;
+    text-transform: uppercase;
   }
+
+.timer {
+        font-size: 17px;
+        color: #fff;
+        background-color: #333;
+        padding: 10px 20px;
+        border-radius: 5px;
+        text-align: center;
+        width: 150px;
+        margin: 10px auto;
+        box-shadow: 0 3px 6px rgba(0, 0, 0, 0.3);
+        font-family: 'Arial', sans-serif;
+        letter-spacing: 1px;
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+    }
