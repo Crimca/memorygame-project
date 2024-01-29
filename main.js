@@ -5,7 +5,7 @@ const coloursPairs = [...colours, ...colours];
 const cardQuantity = coloursPairs.length;
 
 // peli muuttujat
-let revealedQuantity = 0;
+let visibility = 0;
 let activeCard = null;
 let waitingMoveEnd = false;
 
@@ -22,7 +22,9 @@ function startTimer() {
 function updateTimer() {
     const currentTime = new Date();
     const elapsedTime = Math.floor((currentTime - startTime) / 1000);
-    timerElement.textContent = `Ajastin: ${elapsedTime} sekunttia`;
+    const minutes = Math.floor(elapsedTime / 60); // Convert total seconds to minutes
+    const seconds = elapsedTime % 60; // Remaining seconds after minutes are calculated
+    timerElement.textContent = `Kulunut aika: ${minutes}:${seconds.toString().padStart(2, '0')} minuuttia`;
 }
 
 function stopTimer() {
@@ -60,11 +62,11 @@ function buildCard(colour) {
             activeCard.setAttribute("item-clicked", "true");
             waitingMoveEnd = false;
             activeCard = null;
-            revealedQuantity += 2;
+            visibility += 2;
 
 //voitto ilmoitus, jos käännettyjen korttien määrä on kaikkien korttien määrä
-        if (revealedQuantity === cardQuantity) {
-            alert("Sinä voitit!");
+        if (visibility === cardQuantity) {
+            alert("Onnittelut! Löysit kaikki parit.");
             stopTimer();
         }
 
@@ -92,8 +94,6 @@ for (let i = 0; i < cardQuantity; i++) {
 
 coloursPairs.splice(randomInd, 1);
 cardContainer.appendChild(card);
-
-    console.log(colour);
 }
 
 startTimer();
