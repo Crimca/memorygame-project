@@ -1,5 +1,5 @@
-// taulukot
 const cardContainer = document.querySelector(".cards");
+// taulukot
 const colours = ['indigo',  'chartreuse',  'coral',  'turquoise',  'blue',  'orchid',  'black',  'yellow',  'slategray',  'crimson',  'azure',  'olive'];
 const coloursPairs = [...colours, ...colours];
 const cardQuantity = coloursPairs.length;
@@ -22,8 +22,8 @@ function startTimer() {
 function updateTimer() {
     const currentTime = new Date();
     const elapsedTime = Math.floor((currentTime - startTime) / 1000);
-    const minutes = Math.floor(elapsedTime / 60); // Convert total seconds to minutes
-    const seconds = elapsedTime % 60; // Remaining seconds after minutes are calculated
+    const minutes = Math.floor(elapsedTime / 60);
+    const seconds = elapsedTime % 60;
     timerElement.textContent = `Kulunut aika: ${minutes}:${seconds.toString().padStart(2, '0')} minuuttia`;
 }
 
@@ -37,6 +37,7 @@ function buildCard(colour) {
     element.setAttribute("data-item", colour);
     element.setAttribute("item-clicked", "false");
 
+//pelitilan seuranta
 //kuuntelee, kun pelaaja klikkaa korttia. if-lauseessa käsitellään vuoron loppu eli kun kaksi korttia on käännetty ja tarkastettu
     element.addEventListener("click", () => {
         const clicked = element.getAttribute("item-clicked");
@@ -51,10 +52,8 @@ function buildCard(colour) {
             activeCard = element;
             return;
         }
-
-        console.log(activeCard);
         
-//katsotaan, onko värit samat ja jos on, niin jätetään käännetyt kortit mukaan laskuun
+//katsotaan, onko värit samat ja jos on, niin asetetaan arvot true ja jätetään käännetyt kortit mukaan laskuun näkyviksi eli visibility muuttujaan lisätään +2
         const colourMatch = activeCard.getAttribute("data-item");
 
         if (colourMatch === colour) {
@@ -74,7 +73,7 @@ function buildCard(colour) {
     }
         waitingMoveEnd = true;
 
-    //puolen minuutin timer, joka myös kääntää kortit takaisin
+    //jos kortit eivät vastaa toisiaan, asetetaan waitingMoveEnd true ja käynnistetään puolen sekunnin timer, joka kääntää kortit takaisin ei-näkyväksi
         setTimeout(() => {
             element.style.backgroundColor = null;
             activeCard.style.backgroundColor = null;
